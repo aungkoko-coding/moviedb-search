@@ -1,21 +1,21 @@
+import useLoadingIndicatorToggler from "@/utils/custom-hooks/useLoadingIndicatorToggler";
+import menus from "@/utils/menus";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import {
+  AccordionDetails,
+  alpha,
   Box,
   Drawer,
-  Toolbar,
   Accordion as MuiAccordion,
   AccordionSummary as MuiAccordionSummary,
-  AccordionDetails,
-  Typography,
   ListItemButton as MuiListItemButton,
   styled,
-  alpha,
+  Toolbar,
+  Typography,
 } from "@mui/material";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import { MenuType } from "../Navbar";
-import menus from "@/utils/menus";
 import Link from "next/link";
-import useLoadingIndicatorToggler from "@/utils/custom-hooks/useLoadingIndicatorToggler";
 import { usePathname } from "next/navigation";
+import { MenuType } from "../Navbar";
 
 const drawerWidth = 260;
 
@@ -108,6 +108,7 @@ function MyDrawer({ open, onClose }: { open: boolean; onClose: () => void }) {
                   <Box
                     key={name}
                     component={Link}
+                    prefetch={false}
                     href={link}
                     sx={{ color: "text.primary", textDecoration: "none" }}
                     onClick={() => handleClick(link !== pathname)}

@@ -1,8 +1,8 @@
 "use client";
-import { Box, Paper, Container, Typography, Stack, Link } from "@mui/material";
-import GithubIcon from "@mui/icons-material/GitHub";
-import FacebookIcon from "@mui/icons-material/Facebook";
 import GmailIcon from "@mui/icons-material/Email";
+import FacebookIcon from "@mui/icons-material/Facebook";
+import GithubIcon from "@mui/icons-material/GitHub";
+import { Box, Container, Link, Paper, Stack, Typography } from "@mui/material";
 
 export default function Footer() {
   return (

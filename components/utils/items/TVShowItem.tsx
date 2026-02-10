@@ -1,9 +1,8 @@
-import { formatDisplayDate } from "@/utils/format-date";
-import { Box, Typography } from "@mui/material";
-import Image from "next/image";
-import ImageNotSupportedIcon from "@mui/icons-material/ImageNotSupported";
-import Link from "next/link";
 import useLoadingIndicatorToggler from "@/utils/custom-hooks/useLoadingIndicatorToggler";
+import { formatDisplayDate } from "@/utils/format-date";
+import ImageNotSupportedIcon from "@mui/icons-material/ImageNotSupported";
+import { Box, Typography } from "@mui/material";
+import Link from "next/link";
 
 export type TVShowItemDataType = {
   id: number;
@@ -40,6 +39,7 @@ export default function TVShowItem({
         <Box
           onClick={openLoadingIndicator}
           component={Link}
+          prefetch={false}
           href={tvShowLink}
           sx={{
             position: "relative",

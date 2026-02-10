@@ -1,9 +1,8 @@
-import { Box, Typography } from "@mui/material";
-import Image from "next/image";
+import useLoadingIndicatorToggler from "@/utils/custom-hooks/useLoadingIndicatorToggler";
 import ImageNotSupportedIcon from "@mui/icons-material/ImageNotSupported";
+import { Box, Typography } from "@mui/material";
 import Link from "next/link";
 import { CastType } from "../Casts";
-import useLoadingIndicatorToggler from "@/utils/custom-hooks/useLoadingIndicatorToggler";
 
 export default function CastItem({
   data: { id, profile_path, name, character },
@@ -29,6 +28,7 @@ export default function CastItem({
         <Box
           onClick={openLoadingIndicator}
           component={Link}
+          prefetch={false}
           href={personLink}
           sx={{
             position: "relative",

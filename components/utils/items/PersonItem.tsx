@@ -1,8 +1,7 @@
-import { Box, Typography } from "@mui/material";
-import Image from "next/image";
-import ImageNotSupportedIcon from "@mui/icons-material/ImageNotSupported";
-import Link from "next/link";
 import useLoadingIndicatorToggler from "@/utils/custom-hooks/useLoadingIndicatorToggler";
+import ImageNotSupportedIcon from "@mui/icons-material/ImageNotSupported";
+import { Box, Typography } from "@mui/material";
+import Link from "next/link";
 
 type PersonItemProps = {
   defaultBg?: boolean;
@@ -37,6 +36,7 @@ export default function PersonItem({
         <Box
           onClick={openLoadingIndicator}
           component={Link}
+          prefetch={false}
           href={personLink}
           sx={{
             position: "relative",

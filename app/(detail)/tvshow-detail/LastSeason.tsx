@@ -1,9 +1,9 @@
 "use client";
+import useLoadingIndicatorToggler from "@/utils/custom-hooks/useLoadingIndicatorToggler";
 import { Box, Button, Container, Typography } from "@mui/material";
 import Link from "next/link";
-import { SeasonType } from "./tvshow-type";
-import useLoadingIndicatorToggler from "@/utils/custom-hooks/useLoadingIndicatorToggler";
 import SeasonOverviewItem from "./SeasonOveriewItem";
+import { SeasonType } from "./tvshow-type";
 
 export default function LastSeason({
   tvShowId,

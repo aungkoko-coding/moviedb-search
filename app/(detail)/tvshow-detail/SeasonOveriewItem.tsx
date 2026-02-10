@@ -1,15 +1,14 @@
 "use client";
+import BSGridItem from "@/components/utils/items/BSGridItem";
+import PlayTrailerButton from "@/components/utils/PlayTrailerButton";
+import ReadMoreLess from "@/components/utils/ReadMoreLess";
+import useLoadingIndicatorToggler from "@/utils/custom-hooks/useLoadingIndicatorToggler";
+import { formatDisplayDate } from "@/utils/format-date";
+import ImageNotSupportedIcon from "@mui/icons-material/ImageNotSupported";
 import { Box, Typography } from "@mui/material";
 import Link from "next/link";
-import { SeasonType } from "./tvshow-type";
-import useLoadingIndicatorToggler from "@/utils/custom-hooks/useLoadingIndicatorToggler";
-import Image from "next/image";
-import BSGridItem from "@/components/utils/items/BSGridItem";
-import ImageNotSupportedIcon from "@mui/icons-material/ImageNotSupported";
-import { formatDisplayDate } from "@/utils/format-date";
-import PlayTrailerButton from "@/components/utils/PlayTrailerButton";
 import { useState } from "react";
-import ReadMoreLess from "@/components/utils/ReadMoreLess";
+import { SeasonType } from "./tvshow-type";
 
 export default function SeasonOverviewItem({
   tvShowId,
@@ -34,7 +33,7 @@ export default function SeasonOverviewItem({
 }) {
   const imgSrc = `https://image.tmdb.org/t/p/w300${poster_path}`;
   const premiereDesc = `Season ${season_number} of ${tvShowName} premiered on ${formatDisplayDate(
-    air_date!
+    air_date!,
   )}`;
   const { openLoadingIndicator } = useLoadingIndicatorToggler();
   const [readMore, setReadMore] = useState(false);
@@ -45,6 +44,7 @@ export default function SeasonOverviewItem({
         <BSGridItem>
           <Box
             component={Link}
+            prefetch={false}
             onClick={openLoadingIndicator}
             href={`/tvshow-detail/${tvShowId}/season/${season_number}`}
             sx={{

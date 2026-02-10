@@ -1,9 +1,9 @@
 "use client";
 
+import useLoadingIndicatorToggler from "@/utils/custom-hooks/useLoadingIndicatorToggler";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { Box, Typography } from "@mui/material";
 import Link from "next/link";
-import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import useLoadingIndicatorToggler from "@/utils/custom-hooks/useLoadingIndicatorToggler";
 
 export default function BackLink({
   href,
@@ -18,6 +18,7 @@ export default function BackLink({
       <Typography
         onClick={openLoadingIndicator}
         component={Link}
+        prefetch={false}
         href={href}
         display="flex"
         alignItems="center"

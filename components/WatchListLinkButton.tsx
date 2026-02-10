@@ -1,9 +1,9 @@
 "use client";
-import { Badge, IconButton } from "@mui/material";
-import BookmarkIcon from "@mui/icons-material/Bookmark";
-import Link from "next/link";
 import useLoadingIndicatorToggler from "@/utils/custom-hooks/useLoadingIndicatorToggler";
 import useWatchList from "@/utils/custom-hooks/useWatchList";
+import BookmarkIcon from "@mui/icons-material/Bookmark";
+import { Badge, IconButton } from "@mui/material";
+import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 export default function WatchListLinkButton() {

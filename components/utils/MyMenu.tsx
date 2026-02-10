@@ -1,17 +1,17 @@
+import useLoadingIndicatorToggler from "@/utils/custom-hooks/useLoadingIndicatorToggler";
+import menus from "@/utils/menus";
 import {
-  Popover,
+  alpha,
   Box,
   Grid,
   ListItemButton as MuiListItemButton,
+  Popover,
   styled,
-  alpha,
   Typography,
 } from "@mui/material";
 import Link from "next/link";
-import { MenuType } from "../Navbar";
-import menus from "@/utils/menus";
-import useLoadingIndicatorToggler from "@/utils/custom-hooks/useLoadingIndicatorToggler";
 import { usePathname } from "next/navigation";
+import { MenuType } from "../Navbar";
 
 const ListItemButton = styled(MuiListItemButton)(({ theme }) => ({
   ...theme.typography.body2,
@@ -76,6 +76,7 @@ function MyMenu({ open, anchorEl, onClose, mainMenu }: MyMenuProps) {
               <Box
                 component={Link}
                 href={link}
+                prefetch={false}
                 sx={{ textDecoration: "none" }}
                 onClick={() => handleClick(link !== pathname)}
               >

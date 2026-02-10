@@ -1,8 +1,8 @@
+import useLoadingIndicatorToggler from "@/utils/custom-hooks/useLoadingIndicatorToggler";
+import ImageNotSupportedIcon from "@mui/icons-material/ImageNotSupported";
 import { Box, Typography } from "@mui/material";
 import Image from "next/image";
-import ImageNotSupportedIcon from "@mui/icons-material/ImageNotSupported";
 import Link from "next/link";
-import useLoadingIndicatorToggler from "@/utils/custom-hooks/useLoadingIndicatorToggler";
 import { CreditTVShowType } from "./combined-credits-types";
 
 export default function CombinedCreditTVShowItem({
@@ -37,6 +37,7 @@ export default function CombinedCreditTVShowItem({
         <Box
           onClick={openLoadingIndicator}
           component={Link}
+          prefetch={false}
           href={tvShowLink}
           sx={{
             position: "relative",

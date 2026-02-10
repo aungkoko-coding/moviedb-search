@@ -1,49 +1,46 @@
 "use client";
+import useAuthStatus from "@/utils/custom-hooks/useAuthStatus";
+import useLoadingIndicatorToggler from "@/utils/custom-hooks/useLoadingIndicatorToggler";
+import useSearchFilter from "@/utils/custom-hooks/useSearchFilter";
+import menus from "@/utils/menus";
+import CloseIcon from "@mui/icons-material/Close";
+import MuiExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import LoginIcon from "@mui/icons-material/Login";
+import LogoutIcon from "@mui/icons-material/Logout";
+import MenuIcon from "@mui/icons-material/Menu";
+import SearchIcon from "@mui/icons-material/Search";
 import {
   AppBar,
   Box,
-  IconButton,
-  Toolbar,
-  Typography,
-  Container,
-  styled,
-  TextField,
+  Chip,
   CircularProgress,
-  LinearProgress,
-  SxProps,
+  Container,
+  IconButton,
   Menu,
   MenuItem,
   Skeleton,
-  Chip,
-  Backdrop,
-  useTheme,
+  styled,
+  SxProps,
+  TextField,
+  Toolbar,
+  Typography,
 } from "@mui/material";
-import { MouseEventHandler } from "react";
-import MenuIcon from "@mui/icons-material/Menu";
-import LoginIcon from "@mui/icons-material/Login";
-import LogoutIcon from "@mui/icons-material/Logout";
-import CloseIcon from "@mui/icons-material/Close";
-import Link from "next/link";
-import SearchIcon from "@mui/icons-material/Search";
-import MuiExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import Autocomplete, { createFilterOptions } from "@mui/material/Autocomplete";
+import { getProviders, signIn, signOut, useSession } from "next-auth/react";
 import Image from "next/image";
+import Link from "next/link";
+import { usePathname, useRouter } from "next/navigation";
 import {
+  forwardRef,
+  MouseEventHandler,
   useDeferredValue,
   useEffect,
-  useState,
   useRef,
-  forwardRef,
+  useState,
 } from "react";
-import Autocomplete, { createFilterOptions } from "@mui/material/Autocomplete";
-import { usePathname, useRouter } from "next/navigation";
-import MyMenu from "./utils/MyMenu";
 import MyDrawer from "./utils/MyDrawer";
-import menus from "@/utils/menus";
-import useLoadingIndicatorToggler from "@/utils/custom-hooks/useLoadingIndicatorToggler";
-import { useSession, getProviders, signOut, signIn } from "next-auth/react";
+import MyMenu from "./utils/MyMenu";
 import WatchListLinkButton from "./WatchListLinkButton";
-import useAuthStatus from "@/utils/custom-hooks/useAuthStatus";
-import useSearchFilter from "@/utils/custom-hooks/useSearchFilter";
 
 const ExpandMoreIcon = styled(MuiExpandMoreIcon)<{ open: boolean }>(
   ({ open, theme }) => ({
@@ -53,7 +50,7 @@ const ExpandMoreIcon = styled(MuiExpandMoreIcon)<{ open: boolean }>(
     ...(open && {
       transform: "rotate(180deg)",
     }),
-  })
+  }),
 );
 
 type NavMenuProps = {
@@ -116,7 +113,7 @@ export default function Navbar() {
     menuName: MenuType;
   } | null>(null);
   const [profileImageEl, setProfileImageEL] = useState<HTMLImageElement | null>(
-    null
+    null,
   );
   const inputRef = useRef<HTMLInputElement>(null);
   const router = useRouter();
@@ -192,14 +189,14 @@ export default function Navbar() {
         }?query=${deferredQuery}`,
         {
           signal: abortController.signal,
-        }
+        },
       )
         .then((res) => {
           return res.json();
         })
         .then((data) => {
           const options = data.results.map(
-            (res: { name?: string; title?: string }) => res.name || res.title
+            (res: { name?: string; title?: string }) => res.name || res.title,
           );
           setOptions(Array.from(new Set(options)));
           setLoading(false);
@@ -239,7 +236,12 @@ export default function Navbar() {
               columnGap: 2,
             }}
           >
-            <Box component={Link} href="/" sx={{ mx: { xs: "auto", md: 0 } }}>
+            <Box
+              component={Link}
+              prefetch={false}
+              href="/"
+              sx={{ mx: { xs: "auto", md: 0 } }}
+            >
               <Image src="/icon.png" alt="App logo" width={32} height={32} />
             </Box>
 
@@ -249,7 +251,7 @@ export default function Navbar() {
                   mainSegment &&
                   ((pathname === "/person" && menu === "People") ||
                     new RegExp(mainSegment, "i").test(
-                      menu.replace(" ", "").toLowerCase()
+                      menu.replace(" ", "").toLowerCase(),
                     ));
                 return (
                   <NavMenu
@@ -382,7 +384,7 @@ export default function Navbar() {
               router.push(
                 searchResultPage === "v2"
                   ? searchResultPageUrlForV2
-                  : searchResultPageUrlForV1
+                  : searchResultPageUrlForV1,
               );
             }
           }}
